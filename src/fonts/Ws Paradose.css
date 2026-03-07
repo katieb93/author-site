@@ -1,0 +1,12 @@
+/* Webfont: WsParadose-Regular */@font-face {
+    font-family: 'WsParadose';
+    src: url('Ws Paradose.eot'); /* IE9 Compat Modes */
+    src: url('Ws Paradose.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+         url('Ws Paradose.woff') format('woff'), /* Modern Browsers */
+         url('Ws Paradose.woff2') format('woff2'), /* Modern Browsers */
+         url('Ws Paradose.ttf') format('truetype'); /* Safari, Android, iOS */
+             font-style: normal;
+    font-weight: normal;
+    text-rendering: optimizeLegibility;
+}
+

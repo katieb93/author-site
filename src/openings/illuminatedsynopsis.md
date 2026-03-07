@@ -1,0 +1,19 @@
+__Evelyn, a small-town waitress,__ warns celebrity actress Anya against staying at the local motel and offers her a room in the home she shares with her best friend, Westley. To Evelyn’s surprise, Anya accepts.
+
+__Two years earlier, at 17,__ Anya meets Charlie through her co-star, Louis. Though initially wary of each other, they bond over their shared admiration for the reclusive writer Dierdrich Amos. Charlie introduces Anya to a glamorous, hedonistic circle of young artists. Under Charlie’s influence, Anya begins partying, experimenting with drugs, and pursuing fleeting romances—embracing recklessness for the first time. Charlie also pushes Anya to write her own scripts, but Anya struggles, growing frustrated with herself.
+
+When Charlie and Louis’s relationship collapses, Anya tries to help but only alienates Charlie further. Desperate to prove their friendship, Anya confides her deepest secret—her teenage affair with Promises showrunner Andrew. Instead of bringing them closer, the confession distances Charlie, leaving Anya increasingly dependent on her. Charlie, sensing Anya’s neediness, abruptly ends their friendship and moves out.
+
+Heartbroken and alone, Anya spirals. Too ashamed to reconnect with abandoned friends, she impulsively seeks out Andrew, but upon seeing his wife and son, she flees, humiliated. With nowhere left to turn, she boards a flight to Faubion, Texas, determined to find Amos.
+
+__In the present, Anya meets Westley__ and quickly bonds with him. Meanwhile, she learns that Charlie has leaked her past relationship with an older man to the press. Though Andrew’s name remains undisclosed, she knows the truth will soon spread. When Evelyn and Westley reveal that Amos is their landlord, Anya refuses to meet him, too ashamed by the looming scandal. She finds comfort in their friendship, integrating into their lives by paying rent and buying them gifts.
+
+Westley confides in Anya about his struggles with mental illness, and she responds by kissing him. When he hesitates, she takes it as confirmation of her deepest fear—that people now see her as damaged. Seeking distraction, she secretly reads Evelyn’s journals and is stunned by her talent. When she confesses, hoping to flatter Evelyn, it backfires—Evelyn feels betrayed. Their friendship fractures further when Westley sides with Anya.
+
+At Faubion’s Fall Festival, Anya helps at their booth, trying to mend the tension. When Amos arrives, Evelyn introduces them. Taken down by shame, __Anya has a public outburst,__ insisting they know nothing about her life. Later that night, she sleeps with Westley and __decides to return to L.A.__
+
+Evelyn and Westley join her, moving into Anya’s home. Anya and Westley’s relationship grows, and she and Evelyn reconcile. But Westley soon falls into a depressive episode, isolating himself in her storage room. When he finally emerges, he reveals he knows about Andrew—having seen his things in storage. Startled, Anya causes Westley to accidentally injure himself. At the ER, he is placed on a psychiatric hold.
+
+__Overwhelmed, Anya announces her departure from Promises__ upon learning Andrew is returning as showrunner. Meanwhile, Westley leaves the hospital and disappears. Remembering an old conversation, Anya finds him at Venice Beach. Seeing her, he smiles. She takes his hand, promising to always be there for him—knowing now that they are meant to care for each other.
+
+__Years later,__ Anya is a successful producer. Evelyn’s indie film has launched their careers, and their new show is in production. Anya stayed on Promises just long enough to expose Andrew. Westley has built a brick oven in their backyard, cooking daily. When asked about Charlie, Anya simply says, “I found people that feel about me the same way I do about them. I don’t know if that’s… profound for other people. I guess, for her, I just wish the same.”
