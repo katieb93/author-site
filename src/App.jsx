@@ -1,13 +1,11 @@
 import { useEffect, useRef, useState } from "react";
 import ReactMarkdown from "react-markdown";
 import "./App.css";
+import SiteHeader from "./SiteHeader";
+import SiteFooter from "./SiteFooter";
+import PhotoTeaser from "./PhotoTeaser";
 
 import lLine from "./assets/outterlg.svg";
-
-import instagram from "./assets/Instagram.png";
-import youtube from "./assets/YouTube.png";
-import xicon from "./assets/X.png";
-import tiktok from "./assets/TikTok.png";
 import spotify from "./assets/Spotify.png";
 
 import heroClean from "./assets/sweep.png";
@@ -345,81 +343,7 @@ export default function App() {
 
   return (
     <>
-      <header className="site-header">
-        <div className="header-inner brand">
-          <div className="brand-name">Katie Elizabeth Brown | Writer</div>
-
-          <nav className="nav">
-            <a href="#about">About</a>
-            <a href="#work">Manuscripts</a>
-
-            <div className="nav-contact">
-              <span className="nav-link">
-                Contact <span className="nav-caret">▾</span>
-              </span>
-
-              <div className="contact-dropdown" role="menu" aria-label="Contact">
-                <a
-                  className="contact-item"
-                  role="menuitem"
-                  href="https://www.instagram.com/katieb10193/"
-                  target="_blank"
-                  rel="noreferrer"
-                >
-                  <img src={instagram} alt="Instagram" />
-                </a>
-
-                <a
-                  className="contact-item"
-                  role="menuitem"
-                  href="https://www.youtube.com/@ByMeForMeContent/"
-                  target="_blank"
-                  rel="noreferrer"
-                >
-                  <img src={youtube} alt="YouTube" />
-                </a>
-
-                <a
-                  className="contact-item"
-                  role="menuitem"
-                  href="https://open.spotify.com/user/22vb3wnjdcubu5xigzeobe45a?si=31562f5095f149dd"
-                  target="_blank"
-                  rel="noreferrer"
-                >
-                  <img src={spotify} alt="Spotify" />
-                </a>
-
-                <a
-                  className="contact-item"
-                  role="menuitem"
-                  href="https://www.tiktok.com/@bymeformeproductions"
-                  target="_blank"
-                  rel="noreferrer"
-                >
-                  <img src={tiktok} alt="TikTok" />
-                </a>
-
-                <a
-                  className="contact-item"
-                  role="menuitem"
-                  href="https://x.com/katieb10193/"
-                  target="_blank"
-                  rel="noreferrer"
-                >
-                  <img src={xicon} alt="X" />
-                </a>
-
-                <a
-                  className="contact-email"
-                  href="mailto:kate.liz.brown10193@gmail.com"
-                >
-                  kate.liz.brown10193@gmail.com
-                </a>
-              </div>
-            </div>
-          </nav>
-        </div>
-      </header>
+      <SiteHeader page="home" />
 
       <main>
         <section className="hero" aria-label="Hero">
@@ -528,57 +452,11 @@ export default function App() {
           </div>
         </section>
 
+        <PhotoTeaser />
+
         <img className="lLine" src={lLine} alt="" />
 
-        <footer className="site-footer">
-          <div className="footer-inner">
-            <p className="footer-copy-1">I built this site from scratch.</p>
-            <p className="footer-copy">Just sayin'.</p>
-            <p className="footer-email">kate.liz.brown10193@gmail.com</p>
-
-            <div className="footer-socials">
-              <a
-                href="https://x.com/katieb10193/"
-                target="_blank"
-                rel="noreferrer"
-              >
-                X
-              </a>
-
-              <a
-                href="https://www.tiktok.com/@bymeformeproductions"
-                target="_blank"
-                rel="noreferrer"
-              >
-                TikTok
-              </a>
-
-              <a
-                href="https://open.spotify.com/user/22vb3wnjdcubu5xigzeobe45a?si=f7c9db4af6c748be"
-                target="_blank"
-                rel="noreferrer"
-              >
-                Spotify
-              </a>
-
-              <a
-                href="https://www.youtube.com/@ByMeForMeContent"
-                target="_blank"
-                rel="noreferrer"
-              >
-                YouTube
-              </a>
-
-              <a
-                href="https://www.instagram.com/katieb10193/"
-                target="_blank"
-                rel="noreferrer"
-              >
-                Instagram
-              </a>
-            </div>
-          </div>
-        </footer>
+        <SiteFooter />
       </main>
 
       {active && <WorkModal project={active} onClose={() => setActive(null)} />}

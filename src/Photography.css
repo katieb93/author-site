@@ -1,0 +1,283 @@
+/* ---------- Photography page ---------- */
+
+.photo-page {
+  min-height: 70vh;
+  padding: 110px 6% 3%; /* room for the header */
+}
+
+.photo-page-head {
+  margin-bottom: 10px;
+}
+
+/* Big switch at the top ("See them all in a grid") and the smaller
+   "Organize by grid" / "Stack 'em again" switch on each stack */
+.mode-toggle,
+.roll-toggle {
+  appearance: none;
+  -webkit-appearance: none;
+  border: 0;
+  background: var(--specialRed);
+  color: black;
+  font-family: "Roboto Mono", monospace;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition:
+    background 160ms ease,
+    letter-spacing 160ms ease;
+}
+
+.mode-toggle:hover,
+.roll-toggle:hover {
+  background: #807195;
+  letter-spacing: 0.06em;
+}
+
+.mode-toggle:focus-visible,
+.roll-toggle:focus-visible {
+  outline: 2px solid rgba(11, 11, 16, 0.3);
+  outline-offset: 3px;
+}
+
+.mode-toggle {
+  margin-top: 22px;
+  padding: 14px 26px;
+  font-size: 13px;
+}
+
+.all-grid .photo-grid {
+  margin-top: 26px;
+}
+
+/* ----- One stack ----- */
+.roll-section {
+  padding: 48px 0 40px;
+  scroll-margin-top: 40px;
+}
+
+/* First stack sits close under the top switch */
+.roll-shelf > .roll-section:first-child {
+  padding-top: 8px;
+}
+
+.roll-section + .roll-section {
+  border-top: 1px solid var(--border);
+}
+
+/* ----- Stacks side by side: a row of three, then a row of two ----- */
+@media (min-width: 1000px) {
+  .roll-shelf {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center; /* centers the leftover two on the second row */
+    column-gap: 3%;
+    row-gap: 24px;
+  }
+
+  .roll-shelf > .roll-section {
+    flex: 0 0 31%;
+    min-width: 0;
+    padding: 8px 0 16px;
+  }
+
+  .roll-shelf > .roll-section + .roll-section {
+    border-top: 0;
+  }
+
+  /* A stack switched to grid view takes the whole row */
+  .roll-shelf > .roll-section.is-grid {
+    flex-basis: 100%;
+  }
+
+  .roll-shelf > .roll-section:not(.is-grid) .stack-wrap {
+    --pw: min(280px, 24vw);
+    --spread: 0.5;
+  }
+
+  .roll-shelf > .roll-section:not(.is-grid) .print-stage {
+    height: calc(var(--pw) + 90px);
+  }
+
+  .roll-shelf .print-actions {
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  .roll-shelf .print-action {
+    padding: 10px 14px;
+    font-size: 11px;
+  }
+}
+
+.roll-head {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 8px;
+  text-align: center;
+}
+
+.roll-title {
+  margin: 0;
+  font-family: "Things-Italic", serif;
+  font-size: clamp(28px, 3.4vw, 40px);
+  font-weight: 400;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+}
+
+.roll-note {
+  margin: 0;
+  font-family: "Swarsh-Regular", "Scripter", cursive;
+  font-size: 22px;
+  color: #807195;
+}
+
+.roll-toggle {
+  margin-top: 4px;
+  padding: 9px 16px;
+  font-size: 11px;
+  background: transparent;
+  border: 1px solid var(--specialRed);
+}
+
+.roll-toggle:hover {
+  background: var(--specialRed);
+}
+
+.roll-section .photo-grid {
+  margin-top: 26px;
+}
+
+.roll-section .stack-wrap {
+  --pw: min(440px, 80vw);
+}
+
+.roll-foot {
+  display: flex;
+  justify-content: center;
+  margin-top: 10px;
+}
+
+/* Gentle fade when switching between stacks and grids */
+.view-swap {
+  animation: view-in 420ms ease;
+}
+
+@keyframes view-in {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: none; }
+}
+
+.photo-empty {
+  text-align: center;
+  font-family: "Roboto Mono", monospace;
+  color: var(--muted);
+}
+
+/* ---------- Home page teaser ---------- */
+
+.teaser-block {
+  padding: 2.5% 10% 5%;
+}
+
+.teaser-body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 34px;
+  padding-top: 20px;
+}
+
+/* Three prints fanned out */
+.teaser-fan {
+  position: relative;
+  display: block;
+  width: min(320px, 70vw);
+  aspect-ratio: 3 / 2;
+}
+
+.teaser-print {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 3px;
+  box-shadow:
+    0 1px 2px rgba(0, 0, 0, 0.12),
+    0 10px 22px rgba(0, 0, 0, 0.16);
+  user-select: none;
+  -webkit-user-drag: none;
+  transition: transform 320ms cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.teaser-print:nth-child(1) { transform: rotate(-8deg) translate(-14px, 6px); }
+.teaser-print:nth-child(2) { transform: rotate(5deg) translate(12px, 2px); }
+.teaser-print:nth-child(3) { transform: rotate(-1deg); }
+
+.teaser-fan:hover .teaser-print:nth-child(1),
+.teaser-fan:focus-visible .teaser-print:nth-child(1) {
+  transform: rotate(-14deg) translate(-46px, 10px);
+}
+.teaser-fan:hover .teaser-print:nth-child(2),
+.teaser-fan:focus-visible .teaser-print:nth-child(2) {
+  transform: rotate(10deg) translate(44px, 4px);
+}
+.teaser-fan:hover .teaser-print:nth-child(3),
+.teaser-fan:focus-visible .teaser-print:nth-child(3) {
+  transform: rotate(-1deg) translateY(-10px);
+}
+
+.teaser-fan:focus-visible {
+  outline: 2px dashed var(--specialRed);
+  outline-offset: 14px;
+}
+
+.teaser-link {
+  display: inline-block;
+  padding: 14px 26px;
+  background: var(--specialRed);
+  color: black;
+  font-family: "Roboto Mono", monospace;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  transition:
+    background 160ms ease,
+    letter-spacing 160ms ease;
+}
+
+.teaser-link:hover {
+  background: #807195;
+  letter-spacing: 0.06em;
+}
+
+/* ---------- Phones ---------- */
+
+@media (max-width: 640px) {
+  .photo-page {
+    padding: 80px 5% 6%;
+  }
+
+  .roll-section {
+    padding: 13px 0 30px;
+  }
+
+  .teaser-block {
+    padding: 6% 6% 10%;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .view-swap {
+    animation: none;
+  }
+
+  .teaser-print {
+    transition: none;
+  }
+}

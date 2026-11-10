@@ -1,0 +1,151 @@
+/* ---------- Photo-lab envelope (used on both pages) ---------- */
+
+.envelope-card {
+  position: relative;
+  display: block;
+  width: 100%;
+  max-width: 340px;
+  aspect-ratio: 6 / 5;
+  margin: 0 auto;
+  padding: 0;
+  border: 0;
+  background: none;
+  color: #2b2238;
+  font: inherit;
+  text-align: left;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.envelope-card:focus-visible {
+  outline: 2px dashed var(--specialRed);
+  outline-offset: 8px;
+}
+
+/* Prints sticking out of the top */
+.env-peek {
+  position: absolute;
+  left: 8%;
+  right: 8%;
+  top: 0;
+  bottom: 40%;
+}
+
+.env-print {
+  position: absolute;
+  left: 50%;
+  bottom: 0;
+  width: 88%;
+  aspect-ratio: 3 / 2;
+  object-fit: cover;
+  border-radius: 2px;
+  box-shadow:
+    0 1px 2px rgba(0, 0, 0, 0.12),
+    0 6px 14px rgba(0, 0, 0, 0.14);
+  user-select: none;
+  -webkit-user-drag: none;
+  transition: transform 320ms cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.env-print:nth-child(1) { transform: translateX(-56%) rotate(-7deg); }
+.env-print:nth-child(2) { transform: translateX(-46%) translateY(-6px) rotate(4deg); }
+.env-print:nth-child(3) { transform: translateX(-50%) translateY(-12px) rotate(-1deg); }
+
+/* Hover: pull the prints up out of the envelope */
+.envelope-card:hover .env-print:nth-child(1),
+.envelope-card:focus-visible .env-print:nth-child(1) {
+  transform: translateX(-62%) translateY(-22px) rotate(-10deg);
+}
+.envelope-card:hover .env-print:nth-child(2),
+.envelope-card:focus-visible .env-print:nth-child(2) {
+  transform: translateX(-40%) translateY(-30px) rotate(7deg);
+}
+.envelope-card:hover .env-print:nth-child(3),
+.envelope-card:focus-visible .env-print:nth-child(3) {
+  transform: translateX(-50%) translateY(-42px) rotate(-2deg);
+}
+
+/* The envelope itself */
+.env-body {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 62%;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  gap: 6px;
+  padding: 16px 18px;
+  background: var(--specialRed);
+  font-family: "Roboto Mono", monospace;
+  box-shadow:
+    0 2px 4px rgba(0, 0, 0, 0.06),
+    0 14px 30px rgba(0, 0, 0, 0.1);
+  transition: box-shadow 260ms ease;
+}
+
+.envelope-card:hover .env-body {
+  box-shadow:
+    0 4px 8px rgba(0, 0, 0, 0.08),
+    0 22px 40px rgba(172, 156, 193, 0.35);
+}
+
+.env-flap {
+  position: absolute;
+  inset: 0 0 auto 0;
+  height: 30%;
+  background:
+    linear-gradient(
+      to bottom right,
+      transparent 49.5%,
+      rgba(43, 34, 56, 0.18) 50%,
+      transparent 50.5%
+    ),
+    linear-gradient(
+      to bottom left,
+      transparent 49.5%,
+      rgba(43, 34, 56, 0.18) 50%,
+      transparent 50.5%
+    );
+}
+
+.env-lab {
+  font-size: 13px;
+  font-weight: 800;
+  font-style: italic;
+  letter-spacing: -0.01em;
+}
+
+.env-label {
+  font-family: "Swarsh-Regular", "Scripter", cursive;
+  font-size: clamp(24px, 3vw, 32px);
+  line-height: 1;
+  transform: rotate(-2deg);
+  transform-origin: left center;
+}
+
+.env-note {
+  font-family: "Swarsh-Regular", "Scripter", cursive;
+  font-size: 16px;
+  line-height: 1;
+  opacity: 0.8;
+}
+
+.env-row {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+  padding-top: 6px;
+  border-top: 1px solid rgba(43, 34, 56, 0.35);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .env-print {
+    transition: none;
+  }
+}

@@ -1,0 +1,546 @@
+/* ---------- Photography: a stack of 90s 4x6 prints ---------- */
+
+.gallery-block {
+  --pw: min(520px, 80vw);     /* width of a landscape print */
+  --stamp: #ff8a2a;           /* orange date-stamp glow */
+  --paper-back: #f3efe6;      /* back of the photo paper */
+  --spread: 1;                /* scales the SPREAD setting (smaller on phones) */
+
+  padding: 5% 6% 3%;
+}
+
+/* ----- The table area holding the pile ----- */
+.print-stage {
+  position: relative;
+  height: calc(var(--pw) + 140px); /* tall enough for a vertical print */
+  max-width: var(--max);
+  margin: 0 auto;
+  outline: none;
+  touch-action: pan-y; /* let phones scroll the page, we handle sideways swipes */
+}
+
+.print-stage:focus-visible {
+  outline: 2px dashed var(--specialRed);
+  outline-offset: 6px;
+}
+
+/* ----- Lavender photo-lab envelope under the pile ----- */
+.envelope {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: calc(var(--pw) * 0.82);
+  aspect-ratio: 7 / 5;
+  transform: translate(-72%, -38%) rotate(-7deg);
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  gap: 8px;
+  padding: 18px 20px;
+  background: var(--specialRed);
+  color: #2b2238;
+  font-family: "Roboto Mono", monospace;
+  box-shadow:
+    0 2px 4px rgba(0, 0, 0, 0.06),
+    0 14px 30px rgba(0, 0, 0, 0.1);
+  z-index: 0;
+  user-select: none;
+}
+
+.envelope-flap {
+  position: absolute;
+  inset: 0 0 auto 0;
+  height: 34%;
+  background: linear-gradient(
+    to bottom right,
+    transparent 49.5%,
+    rgba(43, 34, 56, 0.18) 50%,
+    transparent 50.5%
+  ),
+  linear-gradient(
+    to bottom left,
+    transparent 49.5%,
+    rgba(43, 34, 56, 0.18) 50%,
+    transparent 50.5%
+  );
+}
+
+.envelope-lab {
+  font-size: clamp(16px, 2.6vw, 26px);
+  font-weight: 800;
+  font-style: italic;
+  letter-spacing: -0.02em;
+}
+
+.envelope-row {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  border-top: 1px solid rgba(43, 34, 56, 0.35);
+  padding-top: 6px;
+}
+
+.envelope-hand {
+  font-family: "Swarsh-Regular", "Scripter", cursive;
+  font-size: 18px;
+  font-weight: 400;
+  letter-spacing: 0;
+  line-height: 0.8;
+}
+
+/* ----- One print ----- */
+.print {
+  --x: 0px;
+  --y: 0px;
+  --r: 0deg;
+
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: var(--pw);
+  aspect-ratio: 3 / 2; /* 4x6 / 35mm */
+  transform: translate(-50%, -50%) translate(calc(var(--x) * var(--spread)), calc(var(--y) * var(--spread)))
+    rotate(var(--r));
+  transition: transform 420ms cubic-bezier(0.2, 0.8, 0.2, 1);
+  perspective: 1400px;
+  user-select: none;
+  -webkit-user-select: none;
+  -webkit-touch-callout: none;
+}
+
+.print.is-portrait {
+  width: calc(var(--pw) * 2 / 3);
+  aspect-ratio: 2 / 3;
+}
+
+.print.is-top {
+  cursor: pointer;
+}
+
+.print.is-top:hover {
+  transform: translate(-50%, -50%) translate(calc(var(--x) * var(--spread)), calc(var(--y) * var(--spread) - 6px))
+    rotate(calc(var(--r) * 0.5));
+}
+
+.print-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transform-style: preserve-3d;
+  transition: transform 620ms cubic-bezier(0.3, 0.7, 0.2, 1);
+}
+
+.print.is-flipped .print-inner {
+  transform: rotateY(180deg);
+}
+
+.print-face {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  border-radius: 3px;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  box-shadow:
+    0 1px 2px rgba(0, 0, 0, 0.12),
+    0 8px 18px rgba(0, 0, 0, 0.14);
+}
+
+.print.is-top .print-face {
+  box-shadow:
+    0 2px 4px rgba(0, 0, 0, 0.12),
+    0 18px 36px rgba(0, 0, 0, 0.2);
+}
+
+/* Front: borderless glossy print */
+.print-front {
+  background: #222;
+}
+
+.print-front img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  pointer-events: none;
+  -webkit-user-drag: none;
+}
+
+/* Gloss */
+.print-front::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: linear-gradient(
+    125deg,
+    rgba(255, 255, 255, 0.16) 0%,
+    rgba(255, 255, 255, 0.04) 30%,
+    transparent 45%,
+    transparent 70%,
+    rgba(255, 255, 255, 0.06) 100%
+  );
+}
+
+/* The orange date stamp, burned into the corner */
+.date-stamp {
+  position: absolute;
+  right: 5%;
+  bottom: 5%;
+  font-family: "Roboto Mono", monospace;
+  font-size: clamp(11px, calc(var(--pw) * 0.034), 18px);
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  white-space: pre;
+  color: var(--stamp);
+  opacity: 0.92;
+  text-shadow:
+    0 0 2px rgba(255, 138, 42, 0.9),
+    0 0 6px rgba(255, 90, 20, 0.55);
+  filter: blur(0.25px);
+  mix-blend-mode: screen;
+  pointer-events: none;
+}
+
+/* Back: photo paper with the lab's faint printing + your handwriting */
+.print-back {
+  transform: rotateY(180deg);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 8%;
+  background: var(--paper-back);
+}
+
+.back-note {
+  position: relative;
+  max-width: 90%;
+  text-align: center;
+  font-family: "Swarsh-Regular", "Scripter", cursive;
+  font-size: clamp(20px, calc(var(--pw) * 0.06), 32px);
+  line-height: 1.15;
+  color: #2b3a67; /* ballpoint blue */
+  transform: rotate(-2deg);
+}
+
+.back-date {
+  position: relative;
+  font-family: "Swarsh-Regular", "Scripter", cursive;
+  font-size: 16px;
+  color: rgba(43, 58, 103, 0.7);
+  transform: rotate(-2deg);
+}
+
+/* ----- Flipping to the next print: slide it out, tuck it under ----- */
+.print.is-tossing {
+  animation: toss 560ms cubic-bezier(0.45, 0, 0.3, 1) forwards;
+}
+
+@keyframes toss {
+  0% {
+    transform: translate(-50%, -50%) translate(calc(var(--x) * var(--spread)), calc(var(--y) * var(--spread)))
+      rotate(var(--r));
+    z-index: 100;
+  }
+  48% {
+    transform: translate(-50%, -50%) translate(78%, -6%) rotate(14deg);
+    z-index: 100;
+  }
+  50% {
+    z-index: 0;
+  }
+  100% {
+    transform: translate(-50%, -50%) translate(calc(var(--x) * var(--spread)), calc(var(--y) * var(--spread) + 14px))
+      rotate(var(--r));
+    z-index: 0;
+  }
+}
+
+/* Going back: pull the bottom print out and lay it on top */
+.print.is-returning {
+  animation: unTuck 560ms cubic-bezier(0.45, 0, 0.3, 1);
+}
+
+@keyframes unTuck {
+  0% {
+    transform: translate(-50%, -50%) translate(calc(var(--x) * var(--spread)), calc(var(--y) * var(--spread) + 14px))
+      rotate(var(--r));
+    z-index: 0;
+  }
+  48% {
+    transform: translate(-50%, -50%) translate(-78%, -6%) rotate(-14deg);
+    z-index: 0;
+  }
+  50% {
+    z-index: 100;
+  }
+  100% {
+    transform: translate(-50%, -50%) translate(calc(var(--x) * var(--spread)), calc(var(--y) * var(--spread)))
+      rotate(var(--r));
+    z-index: 100;
+  }
+}
+
+/* ----- Controls ----- */
+.print-controls {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 18px;
+  margin-top: 6px;
+}
+
+.print-count {
+  min-width: 13ch;
+  text-align: center;
+  font-family: "Roboto Mono", monospace;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+}
+
+.print-btn {
+  width: 40px;
+  height: 40px;
+  border: 1px solid var(--border);
+  background: transparent;
+  font: inherit;
+  font-size: 22px;
+  line-height: 1;
+  cursor: pointer;
+  transition:
+    border-color 160ms ease,
+    background 160ms ease;
+}
+
+.print-btn:hover:not(:disabled) {
+  border-color: var(--specialRed);
+  background: rgba(172, 156, 193, 0.12);
+}
+
+.print-btn:disabled {
+  opacity: 0.3;
+  cursor: default;
+}
+
+.print-actions {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  margin-top: 16px;
+}
+
+.print-action {
+  appearance: none;
+  -webkit-appearance: none;
+  border: 0;
+  padding: 12px 20px;
+  background: var(--specialRed);
+  color: black;
+  font-family: "Roboto Mono", monospace;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition:
+    background 160ms ease,
+    letter-spacing 160ms ease;
+}
+
+.print-action:hover {
+  background: #807195;
+  letter-spacing: 0.06em;
+}
+
+.print-action:focus-visible,
+.print-btn:focus-visible {
+  outline: 2px solid rgba(11, 11, 16, 0.3);
+  outline-offset: 3px;
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+}
+
+/* ---------- Lightbox ---------- */
+
+.lightbox-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  background: rgba(0, 0, 0, 0.86);
+  animation: lightbox-fade 200ms ease;
+}
+
+@keyframes lightbox-fade {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.lightbox-figure {
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  max-width: 90vw;
+}
+
+.lightbox-print {
+  position: relative;
+  border-radius: 4px;
+  overflow: hidden;
+  box-shadow: 0 30px 80px rgba(0, 0, 0, 0.5);
+  animation: lightbox-pop 280ms cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.lightbox-print .date-stamp {
+  font-size: clamp(13px, 1.6vw, 22px);
+}
+
+@keyframes lightbox-pop {
+  from { transform: scale(0.94) rotate(-1deg); opacity: 0; }
+  to { transform: scale(1); opacity: 1; }
+}
+
+.lightbox-img {
+  display: block;
+  max-width: 90vw;
+  max-height: 78vh;
+  object-fit: contain;
+  user-select: none;
+  -webkit-user-drag: none;
+  -webkit-touch-callout: none;
+}
+
+.lightbox-caption {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  margin-top: 14px;
+  text-align: center;
+}
+
+.lightbox-note {
+  font-family: "Swarsh-Regular", "Scripter", cursive;
+  font-size: 26px;
+  line-height: 1.1;
+  color: var(--specialRed);
+}
+
+.lightbox-count {
+  font-family: "Roboto Mono", monospace;
+  font-size: 12px;
+  letter-spacing: 0.1em;
+  color: rgba(255, 255, 255, 0.55);
+}
+
+.lightbox-close {
+  position: absolute;
+  top: 18px;
+  right: 18px;
+  width: 40px;
+  height: 40px;
+  border: 1px solid rgba(255, 255, 255, 0.35);
+  background: transparent;
+  color: white;
+  cursor: pointer;
+  font: inherit;
+}
+
+.lightbox-close:hover {
+  border-color: var(--specialRed);
+}
+
+.lightbox-nav {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  border: 0;
+  background: none;
+  color: white;
+  font-size: 48px;
+  line-height: 1;
+  padding: 16px;
+  cursor: pointer;
+  opacity: 0.7;
+  transition:
+    opacity 160ms ease,
+    color 160ms ease;
+}
+
+.lightbox-nav:hover {
+  opacity: 1;
+  color: var(--specialRed);
+}
+
+.lightbox-prev { left: 8px; }
+.lightbox-next { right: 8px; }
+
+/* ---------- Phones ---------- */
+
+@media (max-width: 640px) {
+  .gallery-block {
+    --pw: 78vw;
+    --spread: 0.4;
+    padding: 10% 4% 6%;
+  }
+
+  .print-stage {
+    height: calc(var(--pw) + 80px);
+  }
+
+  .envelope {
+    padding: 12px 14px;
+    transform: translate(-64%, -30%) rotate(-7deg);
+  }
+
+  .envelope-row {
+    font-size: 8px;
+  }
+
+  .envelope-hand {
+    font-size: 14px;
+  }
+
+  .print-actions {
+    gap: 8px;
+  }
+
+  .print-action {
+    padding: 11px 14px;
+    font-size: 11px;
+  }
+
+  .lightbox-nav {
+    font-size: 34px;
+    padding: 8px;
+  }
+}
+
+/* ---------- Reduced motion ---------- */
+
+@media (prefers-reduced-motion: reduce) {
+  .print,
+  .print-inner,
+  .lightbox-backdrop,
+  .lightbox-print {
+    transition: none !important;
+    animation: none !important;
+  }
+}
