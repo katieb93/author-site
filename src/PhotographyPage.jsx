@@ -87,7 +87,7 @@ export default function PhotographyPage() {
         <div className="work-head photo-page-head">
           <h1 className="work-title">Photography</h1>
           <p className="work-sub">
-            All attempts as capturing what a singular moment was like, in the event words fail me.
+            All attempts at capturing what a singular moment was really like, in the event words fail me.
           </p>
 
           {hasPhotos && (
