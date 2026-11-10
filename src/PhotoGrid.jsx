@@ -55,7 +55,7 @@ export default function PhotoGrid({ photos, showDates = false }) {
             aria-label={`Open photo: ${photo.caption || photo.alt}`}
           >
             <img
-              src={photo.src}
+              src={photo.thumb}
               alt={photo.alt}
               loading="lazy"
               draggable={false}

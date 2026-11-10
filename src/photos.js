@@ -9,6 +9,12 @@ const files = import.meta.glob(
   { eager: true, import: "default" }
 );
 
+// Smaller copies for the stacks and grids (made by `npm run photos`)
+const thumbs = import.meta.glob(
+  "./assets/photography-thumbs/**/*.{jpg,jpeg,png,webp,avif,JPG,JPEG,PNG}",
+  { eager: true, import: "default" }
+);
+
 // The stacks on the photography page, in the order they appear.
 // List each photo by FILE name under the stack it belongs in.
 // Any photo not listed here lands in DEFAULT_STACK.
@@ -411,6 +417,8 @@ export const ROLLS = Object.entries(groups)
         return {
           id,
           src,
+          thumb:
+            thumbs[id.replace("/photography/", "/photography-thumbs/")] || src,
           name,
           time,
           alt: altFromName(name),

@@ -30,7 +30,7 @@ export default function PhotoTeaser() {
             <img
               key={p.id}
               className="teaser-print"
-              src={p.src}
+              src={p.thumb}
               alt=""
               loading="lazy"
               draggable={false}

@@ -265,7 +265,7 @@ export default function PrintStack({ photos, first }) {
                 <div className="print-inner">
                   <div className="print-face print-front">
                     <img
-                      src={photo.src}
+                      src={photo.thumb}
                       alt={isTop ? photo.alt : ""}
                       loading="lazy"
                       draggable={false}
